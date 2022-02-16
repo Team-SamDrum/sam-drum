@@ -1,0 +1,93 @@
+#N canvas 3958 177 1260 780 12;
+#X obj 93 433 metro 10;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array Envelope 400 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 1 399 -1 200 140 1 0 0;
+#X restore 93 518 graph;
+#X obj 93 408 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X text 321 323 Envelope Generator;
+#X obj 670 459 *~;
+#X obj 699 427 *~;
+#X obj 278 324 ADSR~;
+#X obj 93 337 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 130 312 1;
+#X msg 93 312 0;
+#X obj 688 227 ctlin 4 1;
+#X obj 765 227 ctlin 5 1;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array Output 100 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 100 -1 200 140 1 0 0;
+#X restore 305 519 graph;
+#X obj 306 439 metro 10;
+#X obj 306 418 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 688 256 / 128;
+#X obj 765 257 / 128;
+#X obj 669 506 +~;
+#X obj 93 473 tabwrite~ Envelope;
+#X obj 306 467 tabwrite~ Output;
+#X text 765 200 Ch2 Vol;
+#X obj 700 458 *~;
+#X obj 611 228 adc~ 1;
+#X obj 836 227 adc~ 2;
+#X obj 197 169 bonk~;
+#X floatatom 278 259 5 0 0 0 - - -;
+#X obj 239 170 unpack 0 0 0;
+#X floatatom 331 202 5 0 0 0 - - -;
+#X obj 279 225 >;
+#X obj 331 144 ctlin 6 1;
+#X obj 331 172 * 3;
+#X obj 197 143 adc~ 3;
+#X text 609 200 Audio In 1;
+#X text 834 199 Audio In 2;
+#X text 688 199 Ch1 Vol;
+#X text 92 291 Manual Trigger;
+#X text 195 104 Audio 3 In = Trigger;
+#X obj 670 622 dac~ 1 2;
+#X obj 542 226 osc~ 400;
+#X obj 844 325 osc~ 600;
+#X connect 0 0 18 0;
+#X connect 2 0 0 0;
+#X connect 4 0 17 0;
+#X connect 5 0 21 0;
+#X connect 6 0 18 0;
+#X connect 7 0 6 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X connect 10 0 15 0;
+#X connect 11 0 16 0;
+#X connect 13 0 19 0;
+#X connect 14 0 13 0;
+#X connect 15 0 4 1;
+#X connect 16 0 21 1;
+#X connect 21 0 17 1;
+#X connect 22 0 37 0;
+#X connect 23 0 37 1;
+#X connect 24 1 26 0;
+#X connect 25 0 6 0;
+#X connect 26 1 28 0;
+#X connect 27 0 28 1;
+#X connect 28 0 25 0;
+#X connect 29 0 30 0;
+#X connect 30 0 27 0;
+#X connect 31 0 24 0;
+#X connect 38 0 37 0;
+#X connect 39 0 37 1;

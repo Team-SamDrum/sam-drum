@@ -1,0 +1,70 @@
+#N canvas 3679 166 890 798 12;
+#X obj 287 5 ctlin;
+#X obj 287 201 pack f f;
+#X obj 287 124 f;
+#X obj 287 92 t b f;
+#X text 342 94 Gymnastics to ensure a control byte is packed with controller
+number first, f 28;
+#X obj 201 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 201 96 sel 1 0;
+#X obj 250 482 pack f f f;
+#X obj 250 452 f;
+#X msg 250 512 0 \, 1 \$1 \, \$3 \$2 \$1;
+#X text 388 497 Attack \, Decay and Sustain stage \; Immediately from
+0 to 1 in A ms \; Then drop to S in D ms after waiting A ms;
+#X msg 335 613 0 \$1;
+#X text 388 612 Release stage \; Drop to 0 in R ms;
+#X text 394 231 Route controller values by their CC# \; Arbitrary controller
+numbers chosen here \; Change to fit your setup \; Here they are interpreted
+as A \, D \, S \, R \, in that order;
+#X obj 335 585 f;
+#X obj 319 161 / 128;
+#X obj 353 392 MinMax 1 2000;
+#X obj 268 329 MinMax 1 2000;
+#X obj 283 362 MinMax 1 2000;
+#X text 372 161 Normalize control values;
+#X text 382 339 Scale A \, D & R to miliseconds between 1 and 2000
+;
+#X floatatom 393 68 5 0 0 0 - - -;
+#X floatatom 437 68 5 0 0 0 - - -;
+#X floatatom 481 68 5 0 0 0 - - -;
+#X floatatom 16 439 5 0 0 0 - - -;
+#X floatatom 60 440 5 0 0 0 - - -;
+#X floatatom 105 441 5 0 0 0 - - -;
+#X floatatom 153 442 5 0 0 0 - - -;
+#X obj 239 756 outlet~;
+#X obj 11 6 inlet;
+#X obj 239 684 vline~;
+#X obj 287 237 route 0 1 2 3;
+#X connect 0 0 3 0;
+#X connect 0 0 21 0;
+#X connect 0 1 2 1;
+#X connect 0 1 22 0;
+#X connect 0 2 23 0;
+#X connect 1 0 31 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 3 1 15 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 6 1 14 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 0;
+#X connect 9 0 30 0;
+#X connect 11 0 27 0;
+#X connect 11 0 30 0;
+#X connect 14 0 11 0;
+#X connect 15 0 1 1;
+#X connect 16 0 14 1;
+#X connect 16 0 26 0;
+#X connect 17 0 8 1;
+#X connect 17 0 24 0;
+#X connect 18 0 7 1;
+#X connect 18 0 25 0;
+#X connect 29 0 5 0;
+#X connect 30 0 28 0;
+#X connect 31 0 17 0;
+#X connect 31 1 18 0;
+#X connect 31 2 7 2;
+#X connect 31 3 16 0;
